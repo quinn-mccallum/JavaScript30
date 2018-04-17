@@ -31,28 +31,81 @@
 
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
+    const fifteenHundoz = inventors.filter(inventor => {
+      return inventor.year > 1500 && inventor.year < 1600;
+    })
+    console.log(fifteenHundoz);
+
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors' first and last names
+    const firstLast = inventors.map(inventor => {
+      return inventor.first + " " + inventor.last;
+    })
+    console.log(firstLast);
+
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+    const ageism = inventors.sort(function(a, b){
+      return a.year - b.year;
+    })
+    console.log(ageism);
+
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live?
+    const totalYears = inventors.reduce((acc, years) => {
+      return acc + (years.passed - years.year);
+    },0)
+    console.log(totalYears);
+
 
     // 5. Sort the inventors by years lived
+    const ages = inventors.map(inventor => {
+      inventor.age = inventor.passed - inventor.year;
+      return inventor;
+    }).sort(function(a, b){
+      return a.age - b.age;
+    });
+    console.table(ages);
+
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+
+    // const boulz = document.querySelectorAll('.mw-category-group a');
+    // const boulzWitDe = [];
+    //
+    // boulz.forEach(function(element){
+    // 	const roadz = (element.innerHTML).includes('de');
+    // 	if(roadz === true){
+    // 		boulzWitDe.push(element.innerHTML);
+    //     }
+    // });
 
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
 
+    const peopleAlpha = people.sort();
+    console.table(peopleAlpha);
+
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+
+    const activitySort = data.reduce(function(allActivities, activity){
+      if (activity in allActivities){
+        allActivities[activity]++;
+      }
+      else {
+        allActivities[activity] = 1;
+      }
+      return allActivities;
+    }, {});
+
+    console.log(activitySort);
 
   </script>
 </body>
